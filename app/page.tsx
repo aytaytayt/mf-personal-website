@@ -13,7 +13,7 @@ export default function Home() {
         <p className="text-gray-900 leading-relaxed">
           I am primarily a tech strategist. My favourite projects set out a clear operational
           goal that technology can help realise: We want more <a href="https://www.bcg.com/publications/2025/turbulence-to-transformation-airlines-embrace-digital" target="_blank" className="underline hover:font-bold" style={{ color: '#2159ff' }}>planes to take off on time</a> A
-          quicker, more flexible supply chain planning cycle would allow us to respond
+          quicker, more flexible supply chain planning cycle allows us to respond
           better to shocks. 
           </p>
         <p className="text-gray-900 leading-relaxed mt-4">
