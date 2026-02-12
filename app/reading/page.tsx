@@ -131,10 +131,10 @@ function ToggleSwitch({
   return (
     <div className="flex items-center justify-center gap-4 text-lg">
       <span
+      className="clickable"
         style={{
           fontWeight: !isBooks ? 'bold' : 'normal',
           opacity: !isBooks ? 1 : 0.5,
-          cursor: 'pointer',
           transition: 'all 0.3s ease',
         }}
         onClick={() => onToggle('articles')}
@@ -143,13 +143,13 @@ function ToggleSwitch({
       </span>
 
       <div
+      className="clickable"
         onClick={() => onToggle(isBooks ? 'articles' : 'books')}
         style={{
           width: '56px',
           height: '28px',
           borderRadius: '14px',
           backgroundColor: isBooks ? 'var(--brown)' : 'var(--gold)',
-          cursor: 'pointer',
           position: 'relative',
           transition: 'background-color 0.3s ease',
         }}
@@ -169,10 +169,10 @@ function ToggleSwitch({
       </div>
 
       <span
+      className="clickable"
         style={{
           fontWeight: isBooks ? 'bold' : 'normal',
           opacity: isBooks ? 1 : 0.5,
-          cursor: 'pointer',
           transition: 'all 0.3s ease',
         }}
         onClick={() => onToggle('books')}

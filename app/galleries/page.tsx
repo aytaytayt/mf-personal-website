@@ -99,7 +99,7 @@ function GalleryTile({
   return (
     <div
       ref={tileRef}
-      className="relative overflow-visible"
+      className="relative overflow-visible clickable"
       style={{
         aspectRatio: '3 / 4',
         backgroundColor: isHovered
@@ -108,7 +108,6 @@ function GalleryTile({
           ? 'var(--brown)'
           : 'var(--offwhite)',
         transition: 'background-color 0.4s ease',
-        cursor: 'pointer',
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

@@ -1,5 +1,3 @@
-
-
 :root {
   --blue: #2159ff;
   --red: #d34016;
@@ -13,10 +11,13 @@
 
 @import "tailwindcss";
 
+/* ------------------ Default page background & cursor ------------------ */
 body {
   background-color: var(--offwhite);
+  cursor: url("/cursors/astro_arrow.png") 0 0, auto !important;
 }
 
+/* ------------------ Links / home link colors ------------------ */
 .home-link {
   color: var(--black);
   transition: color 0.2s ease;
@@ -26,10 +27,30 @@ body {
   color: var(--red);
 }
 
+/* ------------------ Text selection ------------------ */
 ::selection {
   background-color: var(--white);
+  color: var(--black);
 }
 
 ::-moz-selection {
   background-color: var(--white);
+  color: var(--black);
+}
+
+/* ------------------ Hover cursor for default clickable elements ------------------ */
+a:hover,
+button:hover,
+.home-link:hover {
+  cursor: url("/cursors/astro_link.png") 6 0, pointer !important;
+}
+
+/* ------------------ All elements with .clickable class ------------------ */
+.clickable {
+  cursor: url("/cursors/astro_link.png") 6 0, pointer !important;
+}
+
+/* ------------------ Optional: hover state for clickable class for safety ------------------ */
+.clickable:hover {
+  cursor: url("/cursors/astro_link.png") 6 0, pointer !important;
 }
