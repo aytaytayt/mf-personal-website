@@ -26,3 +26,10 @@ body {
   color: var(--red);
 }
 
+::selection {
+  background-color: var(--white);
+}
+
+::-moz-selection {
+  background-color: var(--white);
+}
