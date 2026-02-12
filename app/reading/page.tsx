@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 //   Title,Author,Publication,Date,URL
 //
 // public/data/books.csv with columns:
-//   Title,Author,Date,RatingFirst,RatingEOY,URL
+//   Title,Author,Date,RatingFirst,RatingEOY,Goodreads
 //
 // The component will load these automatically.
 // To update your reading list, just edit the CSV files
@@ -32,7 +32,7 @@ interface Book {
   date: string;
   ratingFirst: number;
   ratingEOY: number;
-  url: string;
+  goodreads: number;
 }
 
 function parseCSV(text: string): string[][] {
@@ -99,7 +99,7 @@ function parseBooksCSV(text: string): Book[] {
     date: row[2] || '',
     ratingFirst: parseInt(row[3]) || 0,
     ratingEOY: parseInt(row[4]) || 0,
-    url: row[5] || '',
+    goodreads: Math.round(parseFloat(row[5])) || 0,
   }));
 }
 
@@ -139,7 +139,7 @@ function ToggleSwitch({
         }}
         onClick={() => onToggle('articles')}
       >
-        Articles
+        An article
       </span>
 
       <div
@@ -148,7 +148,7 @@ function ToggleSwitch({
           width: '56px',
           height: '28px',
           borderRadius: '14px',
-          backgroundColor: isBooks ? 'var(--brown)' : 'var(--olive)',
+          backgroundColor: isBooks ? 'var(--brown)' : 'var(--gold)',
           cursor: 'pointer',
           position: 'relative',
           transition: 'background-color 0.3s ease',
@@ -177,7 +177,7 @@ function ToggleSwitch({
         }}
         onClick={() => onToggle('books')}
       >
-        Books
+        A book
       </span>
     </div>
   );
@@ -280,7 +280,7 @@ function ArticlesTable({ articles }: { articles: Article[] }) {
   return (
     <table className="w-full" style={{ borderCollapse: 'collapse' }}>
       <thead>
-        <tr style={{ color: 'var(--olive)' }}>
+        <tr style={{ color: 'var(--black)' }}>
           <th className="text-left pb-4 pr-8 font-normal" style={{ width: '45%' }}>Title</th>
           <th className="text-left pb-4 pr-8 font-normal italic" style={{ width: '18%' }}>Author</th>
           <th className="text-left pb-4 pr-8 font-normal" style={{ width: '20%' }}>Publication</th>
@@ -327,12 +327,13 @@ function BooksTable({ books }: { books: Book[] }) {
   return (
     <table className="w-full" style={{ borderCollapse: 'collapse' }}>
       <thead>
-        <tr style={{ color: 'var(--olive)' }}>
-          <th className="text-left pb-4 pr-8 font-normal" style={{ width: '35%' }}>Title</th>
-          <th className="text-left pb-4 pr-8 font-normal italic" style={{ width: '18%' }}>Author</th>
-          <th className="text-left pb-4 pr-8 font-normal" style={{ width: '12%' }}>Date</th>
-          <th className="text-left pb-4 pr-4 font-normal" style={{ width: '17%' }}>At First Read</th>
-          <th className="text-left pb-4 font-normal" style={{ width: '17%' }}>At EOY</th>
+        <tr style={{ color: 'var(--black)' }}>
+          <th className="text-left pb-4 pr-8 font-normal" style={{ width: '30%' }}>Title</th>
+          <th className="text-left pb-4 pr-8 font-normal italic" style={{ width: '19%' }}>Author</th>
+          <th className="text-left pb-4 pr-8 font-normal" style={{ width: '10%' }}>Year</th>
+          <th className="text-left pb-4 pr-4 font-normal" style={{ width: '15%' }}>@ First Read</th>
+          <th className="text-left pb-4 font-normal" style={{ width: '15%' }}>@ EOY</th>
+          <th className="text-left pb-4 pr-1 font-normal" style={{ width: '15%' }}>Goodreads </th>
         </tr>
       </thead>
       <tbody>
@@ -347,18 +348,13 @@ function BooksTable({ books }: { books: Book[] }) {
               onMouseLeave={() => setHoveredRow(null)}
             >
               <td className="py-3 pr-8">
-                {book.url ? (
-                  <a href={book.url} target="_blank" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <span style={cellStyle}>{book.title}</span>
-                  </a>
-                ) : (
-                  <span style={cellStyle}>{book.title}</span>
-                )}
+                <span style={cellStyle}>{book.title}</span>
               </td>
               <td className="py-3 pr-8"><span style={cellStyle} className="italic">{book.author}</span></td>
               <td className="py-3 pr-8"><span style={cellStyle}>{book.date}</span></td>
               <td className="py-3 pr-4"><Stars rating={book.ratingFirst} /></td>
               <td className="py-3"><Stars rating={book.ratingEOY} /></td>
+              <td className="py-3"><Stars rating={book.goodreads} /></td>
             </tr>
           );
         })}
