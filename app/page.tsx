@@ -36,7 +36,7 @@ statement of many of our priorities.
 
       {/* Footer */}
       <footer className="text-center py-8 text-gray-400 text-sm">
-        © 2026 Miriam Ames Feldman. Built with Next.js.
+        © 2026 Miriam Ames Feldman
       </footer>
     </main>
   );
